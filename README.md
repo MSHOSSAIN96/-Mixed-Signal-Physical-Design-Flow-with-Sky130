@@ -204,5 +204,10 @@ Fences: Ensure proper definition and alignment for placement accuracy.
 Avoid Overcomplications: Be clear about the measured dimensions and avoid unnecessary changes that might disrupt standardization.
 
 
+**1.3 Steps to create pins in macro LEF:**
+
+
+
+
 
 
