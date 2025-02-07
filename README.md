@@ -206,6 +206,44 @@ Avoid Overcomplications: Be clear about the measured dimensions and avoid unnece
 
 **1.3 Steps to create pins in macro LEF:**
 
+**Exploring the Design**
+
+In this window, we can see the design of the multiplexer. The tallest structure in the layout represents the multiplexer, and by zooming in, we can examine it more closely.
+
+On the left side of the screen, there's a fence that separates the different sections of the design. The select line is present, but we need to verify if all components have been correctly labeled.
+
+
+![Screenshot 2025-02-07 171348](https://github.com/user-attachments/assets/11d805d7-2571-4910-919a-48f617ce56e1)
+
+In the tkcon window type
+
+``port make``
+
+To verify if the port is made
+
+``port name``
+
+![Screenshot 2025-02-07 172016](https://github.com/user-attachments/assets/2cee23c1-c799-4691-9544-733d3fef247c)
+
+Similarly, we have to continue the same process for other labels also. 
+
+![Screenshot 2025-02-07 172151](https://github.com/user-attachments/assets/9f6e3d03-3fa4-41ed-b1e2-47599776c3ae)
+
+**Identifying Labels and Pins**
+
+To check this, we can navigate to the left panel of the interface and examine the design tree. Here, we can name the pins as required.
+
+Looking at the layout, we can see that certain macro markers are already present in the design tree. 
+
+However, at this stage, we can only see the rectangular layout and coordinates—we cannot yet distinguish individual components or pins.
+
+
+![Screenshot from 2025-01-26 19-16-25](https://github.com/user-attachments/assets/aeb930cb-bfe6-4796-a2ac-29e0e8abf59d)
+
+
+
+
+
 
 
 
