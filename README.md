@@ -244,6 +244,24 @@ To dump out the lef file, we will write,
 ![Screenshot from 2025-01-26 19-16-25](https://github.com/user-attachments/assets/aeb930cb-bfe6-4796-a2ac-29e0e8abf59d)
 
 
+**Section 1.4 Steps to modify LEF class, origin and site properties**
+
+Apart from converting pins from labels, the LEF file contains additional lines that are necessary for the openlane program to accept it:
+
+ a. CLASS CORE
+ 
+ The tkcon window's command to add this line is as follows:
+
+  `property LEFclass CORE`
+  
+
+
+
+
+
+
+
+
 
 
 
