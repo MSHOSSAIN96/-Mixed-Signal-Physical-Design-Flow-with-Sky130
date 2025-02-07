@@ -237,6 +237,9 @@ Looking at the layout, we can see that certain macro markers are already present
 
 However, at this stage, we can only see the rectangular layout and coordinates—we cannot yet distinguish individual components or pins.
 
+To dump out the lef file, we will write, 
+
+`lef write AMUX2_3V.lef`
 
 ![Screenshot from 2025-01-26 19-16-25](https://github.com/user-attachments/assets/aeb930cb-bfe6-4796-a2ac-29e0e8abf59d)
 
