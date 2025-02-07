@@ -246,6 +246,9 @@ To dump out the lef file, we will write,
 
 **Section 1.4 Steps to modify LEF class, origin and site properties**
 
+![Screenshot from 2025-01-26 19-16-25](https://github.com/user-attachments/assets/cfe81c4c-8f88-4d22-acef-3b54722eb277)
+
+
 Apart from converting pins from labels, the LEF file contains additional lines that are necessary for the openlane program to accept it:
 
  a. CLASS CORE
