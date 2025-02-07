@@ -246,8 +246,8 @@ To dump out the lef file, we will write,
 
 **Section 1.4 Steps to modify LEF class, origin and site properties**
 
-![Screenshot from 2025-01-26 19-16-25](https://github.com/user-attachments/assets/cfe81c4c-8f88-4d22-acef-3b54722eb277)
 
+![Screenshot 2025-02-07 210709](https://github.com/user-attachments/assets/bb3d3383-6ad3-42d4-8860-70604801f9ae)
 
 Apart from converting pins from labels, the LEF file contains additional lines that are necessary for the openlane program to accept it:
 
@@ -256,6 +256,59 @@ Apart from converting pins from labels, the LEF file contains additional lines t
  The tkcon window's command to add this line is as follows:
 
   `property LEFclass CORE`
+
+b. ORIGIN 0.000 0.000
+
+We need to bring lower lef corner to the origin. 
+
+The layout must start from the origin (0,0) In order to get this:
+
+first find out the current co-ordinates of origin by: 
+
+selecting the whole layout and type the following in tkcon window
+
+`box`
+
+![Screenshot 2025-02-07 211510](https://github.com/user-attachments/assets/a1361b0b-8fed-4a61-8394-201b18b71d68)
+
+From this, llx and lly are X and Y co-ordinates respectively.
+
+setting X co-ordinate to 0:
+
+`move origin right 'llx' um`
+
+setting Y co-ordinate to 0:
+
+`move origin bottom -`lly`um`
+
+![Screenshot 2025-02-07 211802](https://github.com/user-attachments/assets/ddf11277-6f9f-45d0-bd49-cfc4746ad383)
+
+
+![Screenshot 2025-02-07 211934](https://github.com/user-attachments/assets/cee5c1d4-97d2-49ad-ad92-8047f25715d4)
+
+
+checking if the origin has shifted to (0,0): first find out the current co-ordinates of origin by:
+
+`box`
+
+Now, the llx and lly should have the value of 0.
+
+![Screenshot 2025-02-07 212405](https://github.com/user-attachments/assets/2cbb2dc4-2f44-4d2e-8ecf-e8b183fc7c9b)
+
+The design height must conform to standard cell height requirements, meaning it should be either a single or double-height unit.
+
+SITE unithddbl
+
+To set this, type the following from tkcon window:
+
+`property LEFsite unithddbl`
+
+![Screenshot 2025-02-07 212841](https://github.com/user-attachments/assets/0cea713c-f945-4dbf-a289-0fa449f26bf6)
+
+
+
+
+
   
 
 
