@@ -4,7 +4,7 @@
 
 **Chapter 1: Generating hard-macro LEF for basic analog block**
 
-**1.a Introduction to mixed-signal flow & EDA tools**
+**1.a Introduction to mixed-signal flow & EDA tools** 
 
 **What is mixed signal?**
 
