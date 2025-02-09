@@ -206,6 +206,12 @@ Avoid Overcomplications: Be clear about the measured dimensions and avoid unnece
 
 **1.3 Steps to create pins in macro LEF:**
 
+**Current IP layouts and its limitations**
+
+So when we open the LEF file we see its incomplete. The pin descriptions are NOT included in the file. If we look at the layout window displaying the layout, we wont see the pins. Note that the layout only shows the labels. And the magic tool does not recognize these labels. LEF file must have several fields which seem to be absent.
+
+PnR tools won't accept such incomplete LEF.
+
 **Exploring the Design**
 
 In this window, we can see the design of the multiplexer. The tallest structure in the layout represents the multiplexer, and by zooming in, we can examine it more closely.
@@ -307,6 +313,127 @@ To set this, type the following from tkcon window:
 
 
 **1.5 Steps to modify LEF bounding box property**
+
+![Screenshot 2025-02-09 113605](https://github.com/user-attachments/assets/b8ed8198-18f0-46d6-9eb1-83b659afc98a)
+
+The height of the macro must be either 2.72 um or 5.444 um in order to fit into the rails ( for fd_sc_hd) . In order to acheive this, change the dimensions of layout in magic.
+
+This can be achieved by fixing a bounding box of 5.44 um.
+
+`property FIXED_BBOX {0 24 874 568}`
+
+The meaning of property FIXED_BBOX {0 24 874 568} will be 
+
+
+![Screenshot 2025-02-09 114730](https://github.com/user-attachments/assets/96875623-c1e3-4085-8049-193f25df0859)
+
+The power rail (Purple part) is 48, in the middle anoter metal part is 18. 
+
+
+![Screenshot 2025-02-09 115138](https://github.com/user-attachments/assets/9980a859-7414-4899-8a28-a6a7424ca288)
+
+![Screenshot 2025-02-09 115507](https://github.com/user-attachments/assets/a5425c81-c477-4642-95a1-52c9928c2b7f)
+
+
+
+**1. Understanding the Origin (0,0)**
+
+The bottom-left corner of the entire figure is set as the origin (0,0).
+From this origin, the Y-axis extends vertically and the X-axis extends horizontally.
+
+**2. Lower-Left Corner Coordinates (0,24)**
+
+The small blue box (the active design region) is not exactly at (0,0) but is instead shifted up by 24 units.
+This means the lower-left corner of the design starts at (0,24) instead of (0,0).
+
+**3. Total Height Breakdown**
+
+The total height of the design area is 48 units (as marked on the left).
+The small blue box is positioned centrally within this 48-unit space.
+Since the lower margin is 24, the remaining height above the blue box is: 48−24=24
+
+This confirms that the bounding box properly encloses the design.
+
+**4. Upper-Right Corner Coordinates (874, 568)**
+
+The width of the design is 874 units, making the top-right X-coordinate = 874.
+
+The total height is given as 568, meaning the top-right Y-coordinate is 568.
+
+This aligns with the bounding box requirement:
+
+Bounding Box=(0,24) to (874,568)
+
+Initially, the height was assumed to be 544.
+
+However, the bottom 24 units were not included in that earlier assumption.
+
+The correct total height should include this lower margin, making it: 544+24=568
+
+This explains why the top-right Y-coordinate is 568 instead of 544.
+
+
+![Screenshot 2025-02-09 121532](https://github.com/user-attachments/assets/43d33448-48b2-4869-86db-16280f883ca6)
+
+![Screenshot 2025-02-09 121655](https://github.com/user-attachments/assets/2b7c4e0d-d8ba-4c8e-bf5a-c531967bd84e)
+
+We have got the boundary box to the middle of power rail in the top and bottom in the above figure. 
+
+Now, let's again dump out the lef file.
+
+`lef write AMUX2_3V.lef`
+
+**DIRECTION**
+
+Select the part which contains the pin and type the following in tkcon window:
+
+1.For Power and Ground pins: (Vss/Vdd)
+
+`port class inout`
+
+2.For Input pins:  (I0/I1/select)
+
+`port class input`
+
+3.For Output pins: (out)
+
+`port class output`
+
+
+![Screenshot 2025-02-09 124430](https://github.com/user-attachments/assets/252a1e35-c77e-49c4-8584-ca8a0f0caede)
+
+
+USE
+
+Select the part which contains the pin and type the following in tkcon window:
+
+1.Power pin: (Vdd)
+
+`port use power`
+
+2. Ground pin: (Vss)
+
+`port use ground`
+
+3.Other pins: (out/I1/I0/select)
+
+`port use signal`
+
+Ultimately, after configuring all the lines for LEF, create a LEF file by typing the following in tkcon window:
+
+`lef write AMUX2_3V.lef`
+
+
+**Section 1.7 LEF file modifications summary**
+
+
+![Screenshot 2025-02-09 131341](https://github.com/user-attachments/assets/e70686b8-3fca-4ded-ab11-2af9b701ea71)
+
+
+
+
+
+
 
 
 
