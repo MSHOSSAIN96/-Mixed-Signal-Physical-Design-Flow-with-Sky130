@@ -306,6 +306,8 @@ To set this, type the following from tkcon window:
 ![Screenshot 2025-02-07 212841](https://github.com/user-attachments/assets/0cea713c-f945-4dbf-a289-0fa449f26bf6)
 
 
+**1.5 Steps to modify LEF bounding box property**
+
 
 
 
